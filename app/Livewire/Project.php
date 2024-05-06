@@ -2,8 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Project as ModelsProject;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use App\Models\Project;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -11,7 +10,7 @@ class Project extends Component
 {
     public function render(): View
     {
-        $years_with_type = ModelsProject::selectRaw("DISTINCT type, strftime('%Y', started_at) AS year")
+        $years_with_type = Project::selectRaw("DISTINCT type, strftime('%Y', started_at) AS year")
             ->orderBy('year', 'DESC')
             ->get()
             ->toArray();
