@@ -20,8 +20,7 @@ class BlogNewController extends Controller
             'limit' => ['numeric']
         ]);
 
-        $blogNews = BlogNew::selectRaw("title_$request->lang AS title, description_$request->lang AS description, image, link, posted_at, created_at")
-            ->latest();
+        $blogNews = BlogNew::latest();
 
         if($request->limit){
             $blogNews->limit($request->limit);
